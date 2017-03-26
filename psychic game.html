@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>The Psychic Game</title>
+    <h1>The Psychic Game</h1>
+</head>
+
+<body>
+    <!-- When we start playing the game, our HTML will be placed into this div. -->
+    <div id="game">
+        <p>Guess what letter I'm thinking of</p>
+    </div>
+    <script type="text/javascript">
+    var words = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    var wins = 0;
+    var losses = 0;
+    var guessesLeft = 14
+    var guesses = []; // Stored geusses
+
+
+
+    document.onkeyup = function(event) {
+        var userGuess = event.key;
+
+        var computerGuess = words[Math.floor(Math.random() * words.length)];
+
+        function myFunction() {
+            guessesLeft = 9;
+            guesses = [];
+            computerGuess = words[Math.floor(Math.random() * words.length)];
+
+            console.log(computerGuess);
+        }
+
+        guesses.push(userGuess);
+        guessesLeft--;
+
+
+        if (userGuess === computerGuess) {
+            wins++, myFunction();
+        
+    }
+
+        if (guessesLeft == 0) {
+            losses++;
+            myFunction();
+            guesses = [];
+        }
+
+
+        var html = "<p>wins: " + wins + "</p>" +
+            "<p>Guesses left: " + guessesLeft + "</p>" +
+            "<p>Your guesses so far: " + guesses.join() + "</p>";
+
+        document.getElementById("game").innerHTML = html;
+
+    };
+    </script>
+</body>
+
+</html>
